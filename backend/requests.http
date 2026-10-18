@@ -1,1 +1,74 @@
-# Add API request examples after the routes are implemented in Lab 4.
+@baseUrl = http://localhost:3000
+
+### T01 View all issues
+GET {{baseUrl}}/api/issues
+
+### T02 Create a valid issue
+POST {{baseUrl}}/api/issues
+Content-Type: application/json
+
+{
+  "title": "Printer unavailable",
+  "description": "The shared printer is not responding.",
+  "priority": "Medium"
+}
+
+### T05 Change issue status (replace ISS-101 with an id from GET or POST)
+PATCH {{baseUrl}}/api/issues/ISS-101/status
+Content-Type: application/json
+
+{ "status": "Resolved" }
+
+### T03/T04 Invalid create issue
+POST {{baseUrl}}/api/issues
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "Missing valid title",
+  "priority": "Urgent"
+}
+
+### T06 Invalid status change
+PATCH {{baseUrl}}/api/issues/ISS-101/status
+Content-Type: application/json
+
+{ "status": "Deleted" }
+
+### T07 Update an unknown issue
+PATCH {{baseUrl}}/api/issues/does-not-exist/status
+Content-Type: application/json
+
+{ "status": "Resolved" }
+
+### T09 Create issue with server-owned fields
+POST {{baseUrl}}/api/issues
+Content-Type: application/json
+
+{
+  "id": "HACKED-1",
+  "title": "Projector flickering",
+  "description": "The projector in room B204 flickers.",
+  "priority": "Low",
+  "status": "Resolved",
+  "createdAt": "2000-01-01T00:00:00.000Z"
+}
+
+### T10 Create issue without JSON
+POST {{baseUrl}}/api/issues
+Content-Type: text/plain
+
+title=Printer
+
+### T12 Create issue with malformed JSON (trailing comma)
+POST {{baseUrl}}/api/issues
+Content-Type: application/json
+
+{
+  "title": "Printer unavailable",
+  "description": "The shared printer is not responding.",
+  "priority": "Medium",
+}
+
+### T13 Unknown route
+PATCH {{baseUrl}}/api/fake-url

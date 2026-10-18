@@ -168,5 +168,6 @@ All error responses use this JSON shape:
 |---|---|---|
 | `400` | `VALIDATION_ERROR` | The request contains invalid or missing input. |
 | `404` | `ISSUE_NOT_FOUND` | The requested issue ID does not exist. |
+| `404` | `ROUTE_NOT_FOUND` | The method and path do not match any endpoint. |
 | `415` | `UNSUPPORTED_MEDIA_TYPE` | The request body media type is not supported. |
 | `500` | `INTERNAL_ERROR` | The server could not complete the operation. |
